@@ -1,87 +1,53 @@
-import React from "react";
+import { collection, getDocs } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import db from "../../lib/firebase";
+
+export interface Blog {
+  medium_link: string;
+  thumbnail_url: string;
+  author_name: string;
+  published_date: PublishedDate;
+  name: string;
+  pinned: boolean;
+  id: string;
+}
+
+export interface PublishedDate {
+  seconds: number;
+  nanoseconds: number;
+}
+
 import SecondaryCover from "../../layouts/secondaryCover";
 import PinnedBlogs from "../../components/blogs/PopularBlogs";
 import RecentBlogs from "../../components/blogs/RecentBlogs";
 // import { API_URL } from "../../constants/Constant";
 
-interface Blog {
-  pinned: boolean;
-  thumbnail: string;
-  title: string;
-  description: string;
-  blogUrl: string;
-  // other properties of the blog object
-}
-
-
-
-// create a demo dummy data
-const data: Blog[] = [
-  {
-    pinned: true,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 1",
-    description: "This is a blog 1",
-    blogUrl: "https://www.google.com",
-  },
-  {
-    pinned: true,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 2",
-    description: "This is a blog 2",
-    blogUrl: "https://www.google.com",
-  },
-  {
-    pinned: true,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 2",
-    description: "This is a blog 2",
-    blogUrl: "https://www.google.com",
-  },
-  {
-    pinned: true,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 2",
-    description: "This is a blog 2",
-    blogUrl: "https://www.google.com",
-  },
-  {
-    pinned: false,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 3",
-    description: "This is a blog 3",
-    blogUrl: "https://www.google.com",
-  },
-  {
-    pinned: false,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 3",
-    description: "This is a blog 3",
-    blogUrl: "https://www.google.com",
-  },
-  {
-    pinned: false,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 3",
-    description: "This is a blog 3",
-    blogUrl: "https://www.google.com",
-  },
-
-  {
-    pinned: false,
-    thumbnail: "https://via.placeholder.com/150",
-    title: "Blog 4",
-    description: "This is a blog 4",
-    blogUrl: "https://www.google.com",
-  },
-];
-
 const Blogs: React.FC = () => {
+  const [blogs, setBlogs] = useState<Blog[]>();
 
-  const blogs = data || [];
+  const fetchPost = async () => {
+    await getDocs(collection(db, "blog")).then((querySnapshot) => {
+      const newData: Blog[] = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+        medium_link: doc.data().medium_link,
+        thumbnail_url: doc.data().thumbnail_url,
+        author_name: doc.data().author_name,
+        published_date: doc.data().published_date,
+        name: doc.data().name,
+        pinned: doc.data().pinned,
+      }));
+      setBlogs(newData);
+      console.log(newData);
+    });
+  };
 
-  const pinnedBlogs = blogs.filter((blog) => blog.pinned);
-  const recentBlogs = blogs.filter((blog) => !blog.pinned);
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
+  const pinnedBlogs = blogs?.filter((blog) => blog.pinned);
+  const recentBlogs = blogs?.filter((blog) => !blog.pinned);
 
   return (
     <div className="">

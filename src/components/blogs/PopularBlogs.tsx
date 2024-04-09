@@ -1,19 +1,12 @@
-import React from 'react';
-import readMoreArrow from '../../assets/read-more-arrow.svg';
+import React from "react";
+import readMoreArrow from "../../assets/read-more-arrow.svg";
+import { Blog } from "../../pages/blogs/Blogs";
 
-type Blog ={
-  thumbnail: string;
-  title: string;
-  description: string;
-  blogUrl: string;
-  // other properties of the blog object
-}
+type Props = {
+  blogs: Blog[] | undefined;
+};
 
-type PinnedBlogsProps ={
-  blogs: Blog[];
-}
-
-const PinnedBlogs: React.FC<PinnedBlogsProps> = ({ blogs }) => {
+const PinnedBlogs: React.FC<Props> = ({ blogs }) => {
   return (
     <section id="popular" className="mt-20">
       <div className="container px-2 mx-auto flex flex-col md:px-0">
@@ -22,22 +15,30 @@ const PinnedBlogs: React.FC<PinnedBlogsProps> = ({ blogs }) => {
         </div>
 
         <div className="flex flex-col justify-between mt-10 space-y-10 md:grid md:grid-cols-3 md:gap-4 md:gap-y-10 md:space-y-0">
-          {blogs.map((blog) => (
-            <div key={blog.blogUrl}>
+          {blogs?.map((blog) => (
+            <div key={blog.medium_link}>
               <div className="flex flex-col justify-between w-full space-y-3">
-                <img className="rounded-t-2xl w-full h-[200px] object-cover" src={blog.thumbnail} alt="" />
+                <img
+                  className="rounded-t-2xl w-full h-[200px] object-cover"
+                  src={blog.thumbnail_url}
+                  alt=""
+                />
 
                 <div className="flex flex-col justify-between space-y-6">
                   <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-primaryDark">{blog.title}</h3>
-                    <p className="text-sm text-dark">{blog.description}</p>
+                    <h3 className="text-xl font-bold text-primaryDark">
+                      {blog.name}
+                    </h3>
                   </div>
 
-                  <a href={blog.blogUrl} target="_blank" rel="noreferrer">
-                    
+                  <a href={blog.medium_link} target="_blank" rel="noreferrer">
                     <div className="flex items-center space-x-2 text-sm font-bold">
                       <span>Read More</span>
-                      <img className="w-[12px] h-[12px]" src={readMoreArrow} alt="arrow" />
+                      <img
+                        className="w-[12px] h-[12px]"
+                        src={readMoreArrow}
+                        alt="arrow"
+                      />
                     </div>
                   </a>
                 </div>
@@ -48,6 +49,6 @@ const PinnedBlogs: React.FC<PinnedBlogsProps> = ({ blogs }) => {
       </div>
     </section>
   );
-}
+};
 
 export default PinnedBlogs;
