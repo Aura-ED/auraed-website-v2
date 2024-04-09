@@ -1,19 +1,12 @@
 import React from "react";
 import readMoreArrow from "../../assets/read-more-arrow.svg";
+import { Blog } from "../../pages/blogs/Blogs";
 
-interface Blog {
-  thumbnail: string;
-  title: string;
-  description: string;
-  blogUrl: string;
-  // other properties of the blog object
-}
+type Props = {
+  blogs: Blog[] | undefined;
+};
 
-interface RecentBlogsProps {
-  blogs: Blog[];
-}
-
-const RecentBlogs: React.FC<RecentBlogsProps> = ({ blogs }) => {
+const RecentBlogs: React.FC<Props> = ({ blogs }) => {
   return (
     <section id="recents" className="mt-20">
       <div className="container px-2 mx-auto flex flex-col md:px-0">
@@ -21,22 +14,21 @@ const RecentBlogs: React.FC<RecentBlogsProps> = ({ blogs }) => {
           <h2 className="text-3xl font-bold">Recents</h2>
         </div>
         <div className="flex flex-col justify-between mt-10 space-y-10 md:grid md:grid-cols-3 md:gap-4 md:gap-y-10 md:space-y-0">
-          {blogs.map((blog) => (
+          {blogs?.map((blog) => (
             <div className="flex flex-col justify-between w-full space-y-3">
               <img
                 className="rounded-t-2xl w-full h-[200px] object-cover"
-                src={blog.thumbnail}
+                src={blog.thumbnail_url}
                 alt=""
               />
               <div className="flex flex-col justify-between space-y-6">
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold text-primaryDark">
-                    {blog.title}
+                    {blog.name}
                   </h3>
-                  <p className="text-sm text-dark">{blog.description}</p>
                 </div>
 
-                <a href={blog.blogUrl} target="_blank" rel="noreferrer">
+                <a href={blog.medium_link} target="_blank" rel="noreferrer">
                   <div className="flex items-center space-x-2 text-sm font-bold">
                     <span>Read More</span>
                     <img

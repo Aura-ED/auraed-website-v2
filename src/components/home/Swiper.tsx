@@ -1,6 +1,8 @@
 import LeftArrow from "../../assets/left-arrow.svg";
 import RightArrow from "../../assets/right-arrow.svg";
 import * as react from "swiper/react";
+
+// @ts-expect-error swiper type issues
 import { Autoplay, Navigation, Pagination, Scrollbar, Keyboard } from "swiper";
 
 // Import Swiper styles
