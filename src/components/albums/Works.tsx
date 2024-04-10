@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { Album } from "../../pages/albums/Albums";
+import AlbumImage from "./AlbumImage";
 
-interface Album {
-  name: string;
-  image: string[];
-}
+type Props = {
+  allAlbums: Album[];
+};
 
-function Works({ allAlbums }: { allAlbums: Album[] }) {
+function Works({ allAlbums }: Props) {
   const [album, setAlbum] = useState(allAlbums[0]);
 
   const changeAlbum = (albumName: string) => {
-    const newAlbum = allAlbums.find((album) => album.name === albumName);
+    const newAlbum = allAlbums?.find((album) => album.name === albumName);
     if (newAlbum) {
       setAlbum(newAlbum);
     }
@@ -28,7 +29,7 @@ function Works({ allAlbums }: { allAlbums: Album[] }) {
 
         {/* <!-- Filters --> */}
         <ul className="flex w-2/3 list-style-none flex-wrap self-center items-center justify-center mt-10 gap-5">
-          {allAlbums.map((currAlbum, idx) => (
+          {allAlbums?.map((currAlbum, idx) => (
             <li
               className={
                 "cursor-pointer " +
@@ -48,16 +49,12 @@ function Works({ allAlbums }: { allAlbums: Album[] }) {
 
         <div className="flex flex-col justify-between mt-10 space-y-5 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
           {/* <!-- Album 1 --> */}
-          {album.image.map((image, idx) => (
+          {album?.gallary.map((image, idx) => (
             <div
               key={idx}
               className="flex flex-col justify-between w-full space-y-3"
             >
-              <img
-                className="rounded-2xl w-full h-[200px] object-cover"
-                src={image}
-                alt=""
-              />
+              <AlbumImage image={image} />
             </div>
           ))}
         </div>
