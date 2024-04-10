@@ -38,7 +38,6 @@ const Blogs: React.FC = () => {
         pinned: doc.data().pinned,
       }));
       setBlogs(newData);
-      console.log(newData);
     });
   };
 

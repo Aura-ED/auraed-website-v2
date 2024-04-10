@@ -30,7 +30,6 @@ const Members = () => {
         bio: doc.data().bio,
       }));
       setMembersList(newData);
-      console.log(newData);
     });
   };
 

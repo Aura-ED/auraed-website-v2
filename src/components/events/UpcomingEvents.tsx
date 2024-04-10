@@ -1,21 +1,13 @@
 import calenderSvg from "../../assets/calender.svg";
 import linkSvg from "../../assets/link.svg";
 import React from "react";
-
-type Event = {
-  title: string;
-  location: string;
-  url: string;
-  startDate: string;
-  endDate: string;
-};
+import { Event } from "../../pages/events/Events";
 
 type UpcomingEventsProps = {
-  events: Event[];
+  events: Event[] | undefined;
 };
 
-
-const UpcomingEvents:React.FC<UpcomingEventsProps> = ({ events }) => {
+const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ events }) => {
   return (
     <section id="blogs" className="mt-20 pageAnimation">
       <div className="container px-2 mx-auto flex flex-col md:px-0">
@@ -32,14 +24,17 @@ const UpcomingEvents:React.FC<UpcomingEventsProps> = ({ events }) => {
 
         <div className="flex flex-col justify-between mt-10 space-y-5 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
           {/* <!-- Event 1 --> */}
-          {events.map((event) => (
-            <div className="h-min-0 bg-primaryLight rounded-2xl px-4 py-4">
+          {events?.map((event: Event, index: number) => (
+            <div
+              key={index}
+              className="h-min-0 bg-primaryLight rounded-2xl px-4 py-4"
+            >
               <div className="flex justify-between">
                 <h4 className="text-xl text-primaryDark font-bold">
-                  {event.title}
+                  {event.name}
                 </h4>
 
-                <a href={event.url} target="_blank" rel="noreferrer">
+                <a href={event.id} target="_blank" rel="noreferrer">
                   <img
                     className="w-[20px] h-[20px] cursor-pointer"
                     src={linkSvg}
@@ -57,8 +52,15 @@ const UpcomingEvents:React.FC<UpcomingEventsProps> = ({ events }) => {
                   alt="calender"
                 />
                 <span>
-                  {new Date(event.startDate).toLocaleDateString()} -{" "}
-                  {new Date(event.endDate).toLocaleDateString()}
+                  {
+                    // @ts-expect-error todate not being found
+                    event.date.toDate().toLocaleDateString("en-US", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  }
                 </span>
               </div>
             </div>

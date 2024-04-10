@@ -2,42 +2,35 @@ import React from "react";
 import SecondaryCover from "../../layouts/secondaryCover";
 import Works from "../../components/albums/Works";
 
-interface Album {
+import { collection, getDocs } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import db from "../../lib/firebase";
+
+export interface Album {
   name: string;
-  image: string[];
-  // other properties of the album object
+  gallary: string[];
+  id: string;
 }
 
 const Albums: React.FC = () => {
-  // Hardcoded albums
-  const allAlbums: Album[] = [
-    // create a demo dummy data for albums use different image card and title
-    {
-      name: "Album 1",
-      image: [
-        "https://via.placeholder.com/110",
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-      ],
-    },
-    {
-      name: "Album 2",
-      image: [
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-      ],
-    },
-    {
-      name: "Album 3",
-      image: [
-        "https://via.placeholder.com/120",
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-      ],
-    },
-  ];
+  const [albums, setAlbums] = useState<Album[]>();
+
+  const fetchPost = async () => {
+    await getDocs(collection(db, "album")).then((querySnapshot) => {
+      const newData: Album[] = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+        name: doc.data().name,
+        gallary: doc.data().gallary,
+      }));
+
+      setAlbums(newData);
+    });
+  };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
 
   return (
     <div className="">
@@ -46,7 +39,7 @@ const Albums: React.FC = () => {
         description="We are a non-profit organization focusing on child education with technology."
       />
       <div className="p-4 pageAnimation">
-        <Works allAlbums={allAlbums} />
+        {albums && albums?.length > 0 && <Works allAlbums={albums} />}
       </div>
     </div>
   );
