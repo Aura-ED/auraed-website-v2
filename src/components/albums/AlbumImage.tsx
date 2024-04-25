@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 
 export default function AlbumImage({ image }: { image: string }) {
   const [imageUrl, setImageUrl] = useState<string>();
-  async function fetchImageData() {
+  async function fetchImageData(img: string) {
     const res = await fetch(
-      `https://firebasestorage.googleapis.com/v0/b/auraed-oup2m.appspot.com/o/${image}`
+      `https://firebasestorage.googleapis.com/v0/b/auraed-oup2m.appspot.com/o/${img}`
     );
+
     const data = await res.json();
     const imageUrl = `https://firebasestorage.googleapis.com/v0/b/auraed-oup2m.appspot.com/o/${data.name}?alt=media&token=${data.downloadTokens}`;
     setImageUrl(imageUrl);
   }
 
   useEffect(() => {
-    fetchImageData();
-  }, []);
+    fetchImageData(image);
+  }, [image]);
 
   return (
     <div className="flex flex-col justify-between w-full space-y-3">
@@ -22,6 +23,7 @@ export default function AlbumImage({ image }: { image: string }) {
         src={imageUrl}
         alt=""
       />
+      <br />
     </div>
   );
 }

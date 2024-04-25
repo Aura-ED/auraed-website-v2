@@ -7,14 +7,18 @@ type Props = {
 };
 
 function Works({ allAlbums }: Props) {
-  const [album, setAlbum] = useState(allAlbums[0]);
+  const [activeAlbum, setActiveAlbum] = useState<number>(0);
 
-  const changeAlbum = (albumName: string) => {
-    const newAlbum = allAlbums?.find((album) => album.name === albumName);
-    if (newAlbum) {
-      setAlbum(newAlbum);
-    }
+  const changeAlbum = (index: number) => {
+    setActiveAlbum(index);
   };
+
+  console.log("allAlbums:", allAlbums);
+  console.log("activeAlbum:", activeAlbum);
+  if (allAlbums && allAlbums[activeAlbum]) {
+    console.log("activeAlbum's gallary:", allAlbums[activeAlbum].gallary);
+  }
+
   return (
     <section id="blogs" className="mt-20">
       <div className="container px-2 mx-auto flex flex-col md:px-0">
@@ -28,34 +32,25 @@ function Works({ allAlbums }: Props) {
         </div>
 
         {/* <!-- Filters --> */}
-        <ul className="flex w-2/3 list-style-none flex-wrap self-center items-center justify-center mt-10 gap-5">
-          {allAlbums?.map((currAlbum, idx) => (
-            <li
-              className={
-                "cursor-pointer " +
-                (album.name === currAlbum.name
-                  ? "py-2 px-6 font-bold text-white bg-primary rounded-xl baseline hover:bg-primaryDark md:block"
-                  : "font-semibold text-md text-dark hover:text-primaryDark")
-              }
-              key={idx}
-              onClick={() => changeAlbum(currAlbum.name)}
+
+        <ul className="flex mx-auto gap-x-10 gap-y-5 flex-wrap py-10 justify-center text-center">
+          {allAlbums.map((album, index) => (
+            <div
+              onClick={() => {
+                index !== activeAlbum && changeAlbum(index);
+              }}
+              className={`w-fit px-3 py-1 rounded-full ${
+                activeAlbum === index &&
+                "bg-[#4d727a] text-white font-semibold "
+              }`}
             >
-              {currAlbum.name}
-            </li>
+              {album.name}
+            </div>
           ))}
         </ul>
-
-        {/* <!--  Cards --> */}
-
-        <div className="flex flex-col justify-between mt-10 space-y-5 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
-          {/* <!-- Album 1 --> */}
-          {album?.gallary.map((image, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col justify-between w-full space-y-3"
-            >
-              <AlbumImage image={image} />
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          {allAlbums[activeAlbum].gallary.map((image, index) => (
+            <AlbumImage key={index} image={image} />
           ))}
         </div>
       </div>
