@@ -33,7 +33,7 @@ function SwiperComp() {
         <react.SwiperSlide>
           <div
             style={{
-              backgroundImage: `url('https://auraed.org/assets/images/slider/slider-01.jpg')`,
+              backgroundImage: `url('/assets/landing-banner/banner-one.jpg')`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -60,7 +60,7 @@ function SwiperComp() {
         <react.SwiperSlide>
           <div
             style={{
-              backgroundImage: `url('https://auraed.org/assets/images/slider/slider-02.jpg')`,
+              backgroundImage: `url('/assets/landing-banner/banner-two.jpg')`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -87,7 +87,7 @@ function SwiperComp() {
         <react.SwiperSlide>
           <div
             style={{
-              backgroundImage: `url('https://auraed.org/assets/images/slider/slider-03.jpg')`,
+              backgroundImage: `url('/assets/landing-banner/banner-three.jpg')`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
