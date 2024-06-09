@@ -1,5 +1,5 @@
 import facebookSvg from "../assets/facebook-primary.svg";
-
+import { Link } from "react-router-dom";
 import instagramSvg from "../assets/instagram-primary.svg";
 import linkedinSvg from "../assets/linkedin-primary.svg";
 import logo from "../assets/logo.png";
@@ -31,15 +31,8 @@ function Footer() {
             <div className="text-center md:text-start items-center space-y-3">
               <h3 className="text-xl font-bold text-primary">Pages</h3>
               <div className="flex flex-col space-y-2">
-                <a href="#" className="text-sm font-semibold">
-                  About Us
-                </a>
-                <a href="#" className="text-sm font-semibold">
-                  Portfolio
-                </a>
-                <a href="#" className="text-sm font-semibold">
-                  Blogs
-                </a>
+                  <Link to = '/about' className="text-sm font-semibold">About Us</Link>
+                  <Link to = '/blogs' className="text-sm font-semibold">Blogs</Link>
               </div>
             </div>
 
@@ -77,7 +70,7 @@ function Footer() {
 
         {/* <!-- Copyright --> */}
         <div className="flex flex-col space-y-2 justify-center text-center md:text-start md:flex-row md:justify-between">
-          <p className="text-sm font-bold">&copy; 2022 Aura Ed</p>
+          <p className="text-sm font-bold">&copy; 2024 Aura Ed</p>
           <p className="text-sm text-dark font-semibold">
             Developed with ❤️ and ☕
           </p>

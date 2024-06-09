@@ -8,6 +8,8 @@ import Donate from "./pages/donate/Donate";
 import Layout from "./layouts/layout";
 import BlogPage from "./pages/blogs/SingleBlog";
 import Contact from "./pages/contact/Contact";
+// import Footer from "./layouts/footer";
+import AboutUs from "./components/about/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -18,15 +20,11 @@ const router = createBrowserRouter([
       { path: "/blogs", element: <Blogs /> },
       { path: "/blogs/:id", element: <BlogPage /> },
       { path: "/about", element: <About /> },
+      { path: "/about", element: <AboutUs /> },
       { path: "/albums", element: <Albums /> },
       { path: "/events", element: <Events /> },
       { path: "/donate", element: <Donate /> },
-      {
-        path: "/contact",
-        element: (
-         <Contact />
-        ),
-      }
+      {path: "/contact",element: (<Contact />),}
     ],
   },
 ]);
