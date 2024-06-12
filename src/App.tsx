@@ -21,7 +21,12 @@ const router = createBrowserRouter([
       { path: "/albums", element: <Albums /> },
       { path: "/events", element: <Events /> },
       { path: "/donate", element: <Donate /> },
-      { path: "/contact", element: (<Contact />), }
+      {
+        path: "/contact",
+        element: (
+          <Contact />
+        ),
+      }
     ],
   },
 ]);
