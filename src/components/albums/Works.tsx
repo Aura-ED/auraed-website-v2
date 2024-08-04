@@ -33,7 +33,7 @@ function Works({ allAlbums }: Props) {
 
         {/* <!-- Filters --> */}
 
-        <ul className="flex mx-auto gap-x-10 gap-y-5 flex-wrap py-10 justify-center text-center">
+        <ul className="flex mx-auto gap-x-10 gap-y-5 flex-wrap py-10 justify-center text-center cursor-pointer">
           {allAlbums.map((album, index) => (
             <div
               onClick={() => {

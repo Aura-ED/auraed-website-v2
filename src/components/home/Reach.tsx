@@ -1,8 +1,52 @@
-import placesSvg from '../../assets/places.svg';
-import childrenSvg from '../../assets/children.svg';
-import eventsSvg from '../../assets/events.svg';
+import placesSvg from "../../assets/places.svg";
+import childrenSvg from "../../assets/children.svg";
+import eventsSvg from "../../assets/events.svg";
+import { useEffect, useState } from "react";
+import { getDoc, doc } from "firebase/firestore";
+import db from "../../lib/firebase";
+
+interface ReachStats {
+  districtsReached: string; // Keeping these as string since they might have `+` sign
+  eventsDone: string;
+  helpedChildrenCount: string;
+}
+
+interface MetaData {
+  home_page_stats: ReachStats;
+}
 
 function Reach() {
+  const [metaData, setMetaData] = useState<MetaData>();
+
+  const fetchMeta = async () => {
+    try {
+      const docRef = doc(db, "meta", "eY3YESNTBiBrZdJFpG10"); // First document in the Meta collection
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log(docSnap.data());
+        setMetaData(docSnap.data() as MetaData);
+      } else {
+        console.log("No meta such document!");
+      }
+    } catch (error) {
+      console.error("Error fetching meta document: ", error);
+    }
+  };
+  useEffect(() => {
+    fetchMeta();
+  }, []);
+
+  let reachStats = metaData?.home_page_stats;
+  if (!metaData) {
+    reachStats = {
+      districtsReached: "loading..",
+      eventsDone: "loading..",
+      helpedChildrenCount: "loading..",
+    };
+    setMetaData({ home_page_stats: reachStats });
+  }
+
   return (
     <section id="reach" className="mt-20 px-2 md:px-0">
       <div className="p-6 md:p-12 bg-primary rounded-2xl container mx-auto flex flex-col just items-center space-y-10 md:flex-row md:space-x-16 md:space-y-0">
@@ -20,7 +64,9 @@ function Reach() {
         <div className="flex items-between space-y-10 flex-col w-full md:flex-row md:items-start md:w-2/3 md:space-y-0 justify-between md:space-x-10">
           {/* <!-- Reach 1 --> */}
           <div className="md:w-1/3 items-center text-center space-y-3 md:space-y-5">
-            <h2 className="text-5xl font-bold text-white">20+</h2>
+            <h2 className="text-5xl font-bold text-white">
+              {reachStats?.districtsReached}
+            </h2>
             <div className="flex items-center justify-center space-x-3">
               <img className="w-[30px] h-[30px]" src={placesSvg} alt="places" />
               <h4 className="text-xl text-white">Districts</h4>
@@ -29,7 +75,9 @@ function Reach() {
 
           {/* <!-- Reach 2 --> */}
           <div className="md:w-1/3 items-center text-center space-y-3 md:space-y-5">
-            <h2 className="text-5xl font-bold text-white">6000+</h2>
+            <h2 className="text-5xl font-bold text-white">
+              {reachStats?.helpedChildrenCount}
+            </h2>
             <div className="flex items-center justify-center space-x-3">
               <img
                 className="w-[30px] h-[30px]"
@@ -42,7 +90,9 @@ function Reach() {
 
           {/* <!-- Reach 3 --> */}
           <div className="md:w-1/3 items-center text-center space-y-3 md:space-y-5">
-            <h2 className="text-5xl font-bold text-white">70+</h2>
+            <h2 className="text-5xl font-bold text-white">
+              {reachStats?.eventsDone}
+            </h2>
             <div className="flex items-center justify-center space-x-3">
               <img className="w-[30px] h-[30px]" src={eventsSvg} alt="places" />
               <h4 className="text-xl text-white">Events</h4>
