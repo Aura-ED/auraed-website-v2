@@ -36,7 +36,7 @@ const Albums: React.FC = () => {
     <div className="">
       <SecondaryCover
         title="Albums"
-        description="We are a non-profit organization focusing on child education with technology."
+        description="AuraEd is committed to building and moving forward the fundamental framework to bolster computerized instruction in each corner of Nepal."
       />
       <div className="p-4 pageAnimation">
         {albums && albums?.length > 0 && <Works allAlbums={albums} />}

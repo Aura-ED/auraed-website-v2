@@ -52,7 +52,7 @@ const Blogs: React.FC = () => {
     <div className="">
       <SecondaryCover
         title="Blogs"
-        description="We are a non-profit organization focusing on child education with technology."
+        description="AuraEd is committed to building and improving the essential infrastructure to support digital education across Nepal."
       />
       <div className="story p-4 pageAnimation">
         <PinnedBlogs blogs={pinnedBlogs} />

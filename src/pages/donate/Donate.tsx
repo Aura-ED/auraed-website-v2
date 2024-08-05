@@ -6,7 +6,7 @@ const Donate = () => {
     <>
       <SecondaryCover
         title="Donate"
-        description="We are a non-profital organization focusing on child education with technology."
+        description="AuraEd, an educational initiative in Nepal, is driven by a compelling vision: to create a Nepal where every student, regardless of their background or geographical location, has access to quality digital education."
       />
       <DonateInfo />
     </>

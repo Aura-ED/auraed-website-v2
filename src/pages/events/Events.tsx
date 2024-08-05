@@ -67,7 +67,7 @@ function Events() {
     <div className="">
       <SecondaryCover
         title="Events"
-        description="We are a non-profital organization focusing on child education with technology."
+        description="AuraEd implements special programs to reach marginalized groups, including girls, children with disabilities, and students from economically disadvantaged backgrounds."
       />
       <UpcomingEvents events={events} />
     </div>
