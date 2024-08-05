@@ -4,15 +4,15 @@ import SecondaryCover from "../../layouts/secondaryCover";
 
 const About = () => {
   return (
-    <div className="">
+    <div>
       <SecondaryCover
         title="About"
-        description="We are a non-profit organization focusing on child education with technology."
+        description="At Auraed, we are dedicated to bridging the digital divide by empowering underprivileged children in Nepal with essential digital literacy skills. Our mission is to ensure every child, regardless of their socio-economic background, has the opportunity to thrive in an increasingly digital world."
       />
       <div className="pageAnimation">
-      <AboutUs />
+        <AboutUs />
         <Members />
-        </div>
+      </div>
     </div>
   );
 };

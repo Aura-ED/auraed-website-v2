@@ -1,4 +1,4 @@
-import storyImage from '../../assets/images/events/image_15.jpeg';
+import storyImage from "../../assets/images/events/image_15.jpeg";
 function AboutUs() {
   return (
     <section id="story" className="mt-20">
@@ -23,15 +23,21 @@ function AboutUs() {
               </h2>
             </div>
             <p className="text-sm text-dark">
-              As the bitter fact hits harshly, many children in our country
-              still lack the privilege of quality education though undeniably
-              education is one of the basic needs for everyone. With the hope of
-              addressing and collaboratively working upon this dark problem,
-              AuraED took a step to emphasize informing children about the
-              future that technology holds. We try to ignite passion in the
-              heart of young minds by providing knowledge related to the basic
-              working processes, recent technologies, and fascinating
-              capabilities of computers in the coming decades.
+              In an ever-evolving computerized world, the control of innovation
+              in forming youthful minds cannot be downplayed. Enter AuraEd, a
+              spearheading NGO devoted to revolutionizing child instruction
+              through imaginative tech arrangements. Their mission goes past
+              conventional educating strategies, grasping the computerized age
+              to supply children with the skills and knowledge they have to be
+              flourish in a advanced world.
+            </p>
+            <p className="text-sm text-dark">
+              AuraEd envisions a future where each child, in any case of their
+              socio-economic foundation, has get to to quality instruction
+              improved with innovation. The organization accepts that innovation
+              can bridge the instructive divide, offering intuitively, locks in,
+              and personalized learning encounters that conventional strategies
+              frequently fall flat to supply.
             </p>
           </div>
         </div>

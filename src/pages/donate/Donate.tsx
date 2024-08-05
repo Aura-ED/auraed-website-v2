@@ -1,7 +1,7 @@
 import DonateInfo from "../../components/donate/DonateInfo";
 import SecondaryCover from "../../layouts/secondaryCover";
 
-const Donate=()=> {
+const Donate = () => {
   return (
     <>
       <SecondaryCover
@@ -11,6 +11,6 @@ const Donate=()=> {
       <DonateInfo />
     </>
   );
-}
+};
 
 export default Donate;

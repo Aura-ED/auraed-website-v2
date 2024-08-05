@@ -9,7 +9,6 @@ function Footer() {
     <section id="footer" className="mt-20 px-2 md:px-0">
       <div className="p-2 sm:p-4 container mx-auto bg-primaryLight rounded-2xl space-y-5 md:p-12">
         <div className="text-center md:text-start flex flex-col justify-between items-center space-y-10 md:items-start md:flex-row md:space-x-8 md:space-y-0">
-          
           <div className="w-full text-center md:w-1/3 md:text-start space-y-3">
             <div className="flex justify-center md:justify-start">
               <img
@@ -19,9 +18,9 @@ function Footer() {
               />
             </div>
             <p className="text-sm">
-              We're proud to say that Project AuraEd has successfully reached
-              five schools and taught over a thousand students from different
-              districts of Nepal.
+              Join us in our mission to empower the next generation with the
+              skills they need to succeed in a digital world. Together, we can
+              make a difference.
             </p>
           </div>
 
@@ -31,8 +30,12 @@ function Footer() {
             <div className="text-center md:text-start items-center space-y-3">
               <h3 className="text-xl font-bold text-primary">Pages</h3>
               <div className="flex flex-col space-y-2">
-                  <Link to = '/about' className="text-sm font-semibold">About Us</Link>
-                  <Link to = '/blogs' className="text-sm font-semibold">Blogs</Link>
+                <Link to="/about" className="text-sm font-semibold">
+                  About Us
+                </Link>
+                <Link to="/blogs" className="text-sm font-semibold">
+                  Blogs
+                </Link>
               </div>
             </div>
 
@@ -49,17 +52,26 @@ function Footer() {
 
                 {/* <!-- Social Links --> */}
                 <div className="flex items-center justify-center md:justify-start space-x-2 pt-2">
-                  <a className="w-[8px] h-[13px] text-primary" href=" https://www.facebook.com/auraednepal">
+                  <a
+                    className="w-[8px] h-[13px] text-primary"
+                    href=" https://www.facebook.com/auraednepal"
+                  >
                     <img src={facebookSvg} alt="facebook" />
                   </a>
                   {/* <a class="w-[14px] h-[14px]" href="#">
                       <img src={twitterSvg} alt="twitter" />
                     </a> */}
-                  <a className="w-[14px] h-[14px]" href="https://www.instagram.com/auraednepal/">
+                  <a
+                    className="w-[14px] h-[14px]"
+                    href="https://www.instagram.com/auraednepal/"
+                  >
                     <img src={instagramSvg} alt="instagram" />
                   </a>
-                  <a className="w-[14px] h-[14px]" href="https://www.linkedin.com/company/71598016/">
-                    <img src={linkedinSvg} alt="linkedin" />  
+                  <a
+                    className="w-[14px] h-[14px]"
+                    href="https://www.linkedin.com/company/71598016/"
+                  >
+                    <img src={linkedinSvg} alt="linkedin" />
                   </a>
                 </div>
               </div>
