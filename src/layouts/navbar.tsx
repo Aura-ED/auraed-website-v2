@@ -108,12 +108,14 @@ function Navbar() {
               Contact
             </Link>
           </div>
+          {/*
           <Link
             to="/donate"
             className="hidden py-2 px-6 font-bold text-white bg-primary rounded-xl baseline hover:bg-primaryDark md:block"
           >
             Donate
           </Link>
+          */}
 
           {/* <!-- Hamburger Icon --> */}
           <button
@@ -174,14 +176,6 @@ function Navbar() {
             <a href="#" className="hover:text-primaryDark hover:font-bold">
               Contact
             </a>
-
-            <Link
-              to="/donate"
-              onClick={changeToggleHandler}
-              className="py-2 px-6 font-bold text-white bg-primary rounded-xl baseline hover:bg-primaryDark md:block"
-            >
-              Donate
-            </Link>
           </div>
         </div>
       </nav>
